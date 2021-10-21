@@ -10,35 +10,31 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
 <link  rel="stylesheet" href="../Assets/css/style.css"  />
 </head>
 <body>
-              <h1 style="text-align: center;background-color: blue;color: white;padding: 70px;
-              font-size: 50px;">Weather Dashboard</h1>
+              <h1>Weather Dashboard</h1>
+               <hr>
 
-
-              <hr>
-
-              <div class="wholeContainer">
-<div class="container1" style="display: flex;">
+              <div class="wholeContainer row">
+<div class="container1 col-3">
   
 
-    <div class="input-group mb-3">
+    <div class="input-group input-group-lg">
         
 
-          <form id="search-form">
-            <input id="search-input" type="text" placeholder="Search for a city ">
-            <button class="btn btn-info ">Search</button>
+          <form id="search-form" class="w-100 form">
+            <input id="search-input" type="text" placeholder=" Search for a city ">
+            <button class="btn btn-info bg-darkblue"><i class="fas fa-cloud-sun-rain "></i>
+            </button>
         </form>
 
-      
 
 
 
-
-      <div class="btn-group-vertical" style="border: 1px solid black;"> SERCH HISTORY
+      <div class="btn-group-vertical HistoryDiv" id = "DisplaySearchHistory">
+        <!-- <h6> SERCH HISTORY</h6> -->
 
       
       </div>
@@ -50,11 +46,10 @@
 </div>
 
 
-<div class="container2">
+<div class="container2  col-9">
        
-      <div   style="border: 1px solid black;
-      height: 30vh;">
-        <h2 class="subtitle">WEATHER DAY: <span id="repo-search-term"></span></h2>
+      <div>
+        <h6 >WEATHER DAY:</h6>
         <div id="CityWeatherDay">
 
         </div>
@@ -64,14 +59,9 @@
 
 
 <div>
-    <h2 class="subtitle">5- day forcast  <span id="repo-search-term"></span></h2>
-    <div id="FiveDaysforcast">
+    <h6>5- day forcast</h6>
+    <div id="FiveDaysforcast" class="d-flex">
 
-      <div class="card">
-        <div class="card-body" style ="background-color :blue">
-
-        </div>
-      </div>
 
 
 
@@ -79,7 +69,7 @@
     </div>
 
 </div>
-  </div>
+  </div> 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../Assets/js/script.js"></script>

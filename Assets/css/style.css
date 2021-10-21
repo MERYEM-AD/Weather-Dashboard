@@ -1,0 +1,56 @@
+h1{
+    font-family: 'Rampart One', cursive;
+    font-size: 50px;
+    color: cornsilk;
+    text-align: center;
+    background-color: darkblue;
+    padding: 70px;
+}
+h6{
+    color: darkblue;
+  
+}
+
+
+hr{
+
+    border: 1px solid darkblue;
+}
+
+.form{
+    border-bottom: 1px
+     solid darkblue;
+        padding-bottom: 30px;
+        padding-top: 20px;
+}
+
+input{
+    width: 80%;
+}
+.bg-darkblue{
+    background-color: darkblue;
+    color: white;
+ 
+}
+
+.HistoryDiv {
+
+    margin-top: 18px;
+}
+
+.margin-Top {
+
+    margin-top: 18px;
+}
+ul{
+    border: 1px
+     solid darkblue;
+        border-radius: 10px;
+        padding: 30px;}
+
+.card{
+    background-color: darkblue;
+    color: white;
+    margin:  5px;
+}
+.margin{margin:10px;}

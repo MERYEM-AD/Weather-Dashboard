@@ -1,9 +1,44 @@
 const apiKey='306c135784d264ca0cd3b4fe2ba8c629';
 const searchFormEl = document.querySelector('#search-form');
 const CityWeatherDay = document.querySelector('#CityWeatherDay');
-const FiveDaysforcastdiv = document.querySelector('#FiveDaysforcast');
+const forcast5= document.querySelector('#FiveDaysforcast');
+const DisplaySearchHistory= document.querySelector('#DisplaySearchHistory');
 
 
+
+function getFromloalStorage(){
+
+
+  let citiesNames = localStorage.getItem("newCity");
+  if( citiesNames === null){       
+       citiesNames = [];
+       
+      }else{
+
+        let searchTitle = document.createElement("h6"); 
+        searchTitle.textContent ="*** SERCH HISTORY ***"
+        DisplaySearchHistory.append(searchTitle);
+
+        citiesNames = JSON.parse(citiesNames);
+        for(let i =((citiesNames.length)-1);i>=0;i--)
+           {
+
+
+            let buttonCityName =document.createElement('button');
+            buttonCityName.setAttribute("class","bg-darkblue margin-Top");
+            buttonCityName.textContent=citiesNames[i].name;
+            $('.btn-group-vertical').append(buttonCityName);
+           }
+        
+
+  }    
+  return citiesNames;
+  
+}
+
+
+
+let tableHistory = getFromloalStorage();
 
 
 function handleSearchFormSubmit(event) {
@@ -20,12 +55,32 @@ function handleSearchFormSubmit(event) {
 
 
   CityWeatherDay.textContent="";
+ forcast5.textContent=""
+
    DisplayWeatherDay(weatherlRequest);
    FiveDaysforcast(searchInputVal);
-   
+
+
+     //create object name
+  let CityObject={name :searchInputVal};
+
+
+   SetCtiyName(tableHistory,CityObject);
+  
+   DisplaySearchHistory.textContent="";
+
+ getFromloalStorage();
 
 
   searchInput.value=null;
+}
+
+function SetCtiyName(tableHistory,objectName){
+
+  let tab= tableHistory;
+  tab.push(objectName);
+  let newCity =JSON.stringify(tab);
+  localStorage.setItem("newCity", newCity);
 }
 
 
@@ -33,6 +88,7 @@ function handleSearchFormSubmit(event) {
 ////DISPLAY WEATHER OF CITY INPUT 
 
 function DisplayWeatherDay(urlRequest){
+
 
   
  fetch(urlRequest)
@@ -46,7 +102,6 @@ function DisplayWeatherDay(urlRequest){
  })
  .then( function(data){
 
- console.log(data);
     let cityname = document.createElement('ul');
     cityname.textContent=data.name;
 
@@ -105,12 +160,11 @@ function DisplayWeatherDay(urlRequest){
 
 }
 
-
-
+//display 5 days forcast
  function FiveDaysforcast(cityname){
 
 let forcastDays = "https://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&appid="+apiKey;
-console.log(forcastDays)
+
 //display with ajax method
 $.ajax({
 url :forcastDays,
@@ -127,6 +181,13 @@ method:'GET',
  let humidity =document.createElement('p');
  let windSpeed =document.createElement('p');
 
+//  creation of card
+
+let card = document.createElement('div');
+let cardBody = document.createElement('div');
+
+card.setAttribute("class","card margin");
+cardBody.setAttribute("class","card-body");
 
 
  let date = response.list[i].dt*1000;
@@ -145,13 +206,18 @@ method:'GET',
  temperature.setAttribute("class","card-text");
  humidity.setAttribute("class","card-text");
  windSpeed.setAttribute("class","card-text");
-
- $('.card-body').append(" ( "+humanDateFormat+" )");
- $('.card-body').append(icon);
- $('.card-body').append(humidity);
- $('.card-body').append(temperature);
- $('.card-body').append(windSpeed);
  
+
+ cardBody.append(" ( "+humanDateFormat+" )");
+ cardBody.append(icon);
+ cardBody.append(humidity);
+ cardBody.append(temperature);
+ cardBody.append(windSpeed);
+
+ card.append(cardBody);
+ forcast5.append(card);
+ 
+
 
  }
 
