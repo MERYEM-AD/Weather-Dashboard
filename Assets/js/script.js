@@ -1,6 +1,7 @@
 const apiKey='306c135784d264ca0cd3b4fe2ba8c629';
 const searchFormEl = document.querySelector('#search-form');
 const CityWeatherDay = document.querySelector('#CityWeatherDay');
+const FiveDaysforcastdiv = document.querySelector('#FiveDaysforcast');
 
 
 
@@ -20,6 +21,7 @@ function handleSearchFormSubmit(event) {
 
   CityWeatherDay.textContent="";
    DisplayWeatherDay(weatherlRequest);
+   FiveDaysforcast(searchInputVal);
    
 
 
@@ -44,7 +46,7 @@ function DisplayWeatherDay(urlRequest){
  })
  .then( function(data){
 
-// console.log(data);
+ console.log(data);
     let cityname = document.createElement('ul');
     cityname.textContent=data.name;
 
@@ -101,6 +103,63 @@ function DisplayWeatherDay(urlRequest){
 
  })
 
+}
+
+
+
+ function FiveDaysforcast(cityname){
+
+let forcastDays = "https://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&appid="+apiKey;
+console.log(forcastDays)
+//display with ajax method
+$.ajax({
+url :forcastDays,
+method:'GET',
+
+}).then(function(response){
+ // console.log(response);
+
+
+ for(let i=0;i<=32;i+=8){
+ //let date =document.createElement('p');
+ let icon =document.createElement('img');
+ let temperature =document.createElement('p');
+ let humidity =document.createElement('p');
+ let windSpeed =document.createElement('p');
+
+
+
+ let date = response.list[i].dt*1000;
+ const dateObject = new Date(date);
+ const humanDateFormat = dateObject.toLocaleString("en-US",{day: "numeric",year :"numeric", month : "numeric"}) ;
+
+ icon.setAttribute("src","https://openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
+
+ let temp =response.list[i].main.temp; 
+ temperature.textContent= "Temperature :"+(temp*9/5 - 459.67).toFixed(2)+" °F";  //toFixed(2) to  show 2 numbers after decimal  places
+ humidity.textContent="Humidity :"+response.list[i].main.humidity+" %";
+ windSpeed.textContent="wind :"+response.list[i].wind.speed+ "MPH";
+
+
+ icon.setAttribute("class","card-text");
+ temperature.setAttribute("class","card-text");
+ humidity.setAttribute("class","card-text");
+ windSpeed.setAttribute("class","card-text");
+
+ $('.card-body').append(" ( "+humanDateFormat+" )");
+ $('.card-body').append(icon);
+ $('.card-body').append(humidity);
+ $('.card-body').append(temperature);
+ $('.card-body').append(windSpeed);
+ 
+
+ }
+
+  
+});
+
+
+  
 }
 
 
