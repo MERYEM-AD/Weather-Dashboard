@@ -1,35 +1,54 @@
 const apiKey='306c135784d264ca0cd3b4fe2ba8c629';
-const currentDate = moment();
-let searchFormEl = document.querySelector('#search-form');
+const searchFormEl = document.querySelector('#search-form');
+const CityWeatherDay = document.querySelector('#CityWeatherDay');
+
+
+
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
+  let searchInput= document.querySelector('#search-input');
+  const searchInputVal = document.querySelector('#search-input').value;
 
-  let searchInputVal = document.querySelector('#search-input').value;
+  let weatherlRequest = 'https://api.openweathermap.org/data/2.5/weather?q=' +searchInputVal+ '&appid=' +apiKey;
 
   if (!searchInputVal) {
     console.error('You need a search input value!');
     return;
   }
 
-  let weatherlRequest = 'https://api.openweathermap.org/data/2.5/weather?q=' + searchInputVal + '&appid=' +apiKey;
 
- fetch(weatherlRequest)
+  CityWeatherDay.textContent="";
+   DisplayWeatherDay(weatherlRequest);
+   
+
+
+  searchInput.value=null;
+}
+
+
+
+////DISPLAY WEATHER OF CITY INPUT 
+
+function DisplayWeatherDay(urlRequest){
+
+  
+ fetch(urlRequest)
  .then(function(response){
 
   if(response.status===200){
-  //  console.log(response);
+
     return response.json();
   }
 
  })
  .then( function(data){
-  console.log(data);
 
+// console.log(data);
     let cityname = document.createElement('ul');
     cityname.textContent=data.name;
 
-    document.body.append(cityname);
+    CityWeatherDay.append(cityname);
 
     let icon =document.createElement('img');
     let temperature =document.createElement('li');
@@ -37,7 +56,11 @@ function handleSearchFormSubmit(event) {
     let windSpeed =document.createElement('li');
     let uvIndex =document.createElement('li');
 
-    let date = currentDate.textContent="( "+moment().format('DD/MM/YYYY')+" )";
+   let date = data.dt*1000;
+   const dateObject = new Date(date);
+   const humanDateFormat = dateObject.toLocaleString("en-US",{day: "numeric",year :"numeric", month : "numeric"
+  
+  }) ;
     icon.setAttribute("src","https://openweathermap.org/img/w/"+data.weather[0].icon+".png");
 
   /**Convert Kelvin to Fahrenheit
@@ -54,7 +77,7 @@ function handleSearchFormSubmit(event) {
     let lon = data.coord.lon;
    let uvRequest = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&appid="+apiKey; 
 
-    cityname.append(date);
+    cityname.append(" ( "+humanDateFormat+" )");
     cityname.append(icon);
     cityname.append(temperature);
     cityname.append(humidity);
@@ -72,20 +95,20 @@ function handleSearchFormSubmit(event) {
   
    })
    .then( function(data){
-     console.log(data.value);
         uvIndex.textContent="UV index :"+data.value;
- 
    })
 
 
  })
 
-
-
- 
-    
-
-
 }
 
+
+
+
+
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+
+
+
+

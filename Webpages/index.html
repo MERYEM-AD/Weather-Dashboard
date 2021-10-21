@@ -15,17 +15,20 @@
 <link  rel="stylesheet" href="../Assets/css/style.css"  />
 </head>
 <body>
-              <h1 class="text-primary">Weather Dashboard</h1>
+              <h1 style="text-align: center;background-color: blue;color: white;padding: 70px;
+              font-size: 50px;">Weather Dashboard</h1>
 
 
               <hr>
 
+<div class="container" style="display: flex;">
+  <div>
 
     <div class="input-group mb-3">
         
 
-          <form id="search-form" class="form w-50">
-            <input id="search-input" class="form-input w-50" type="text" placeholder="Search for a city ">
+          <form id="search-form">
+            <input id="search-input" type="text" placeholder="Search for a city ">
             <button class="btn btn-info ">Search</button>
         </form>
 
@@ -34,7 +37,35 @@
 
 
 
+      <div class="btn-group-vertical" style="border: 1px solid black; width: 90%;"> SERCH HISTORY
 
+      
+      </div>
+
+  </div>
+  
+
+     
+
+
+       
+      <div   style="border: 1px solid black;width: 70%;
+      height: 30vh;">
+        <h2 class="subtitle">WEATHER DAY: <span id="repo-search-term"></span></h2>
+        <div id="CityWeatherDay">
+
+
+
+          
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+    
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="../Assets/js/script.js"></script>
