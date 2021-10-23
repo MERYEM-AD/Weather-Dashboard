@@ -25,11 +25,13 @@ function getFromloalStorage(){
 
 
             let buttonCityName =document.createElement('button');
-            buttonCityName.setAttribute("class","bg-darkblue margin-Top");
+            buttonCityName.setAttribute("class","bg-darkblue margin-Top w-100");
+            buttonCityName.setAttribute("data-city",citiesNames[i].name);
             buttonCityName.textContent=citiesNames[i].name;
             $('.btn-group-vertical').append(buttonCityName);
+            buttonCityName.addEventListener('click',BtnHistorySearch);
            }
-        
+   
 
   }    
   return citiesNames;
@@ -55,7 +57,7 @@ function handleSearchFormSubmit(event) {
 
 
   CityWeatherDay.textContent="";
- forcast5.textContent=""
+  forcast5.textContent=""
 
    DisplayWeatherDay(weatherlRequest);
    FiveDaysforcast(searchInputVal);
@@ -229,10 +231,30 @@ cardBody.setAttribute("class","card-body");
 }
 
 
-
-
-
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+
+
+////Display weather city and 5 days forcast for each button from search history :
+
+function BtnHistorySearch(event){
+   let city = event.target;
+   if (city.matches("button")) {
+
+    let datacity = city.getAttribute("data-city");
+    
+  let weatherlRequest = 'https://api.openweathermap.org/data/2.5/weather?q=' +datacity+ '&appid=' +apiKey;
+
+  CityWeatherDay.textContent="";
+  forcast5.textContent=""
+
+  DisplayWeatherDay(weatherlRequest);
+  FiveDaysforcast(datacity);
+
+
+
+}
+}
+
 
 
 
