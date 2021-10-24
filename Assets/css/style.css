@@ -17,11 +17,15 @@ hr{
     border: 1px solid darkblue;
 }
 
+.container1{
+    padding-left: 60px;
+}
+
 .form{
-    border-bottom: 1px
-     solid darkblue;
-        padding-bottom: 30px;
-        padding-top: 20px;
+    
+    border-bottom: 1px solid darkblue;
+    padding-bottom: 30px;
+    padding-top: 20px;
 }
 
 input{
@@ -54,6 +58,7 @@ ul{
     margin:  5px;
 }
 .margin{margin:10px;}
+.hidden{display: none;}
 
 
 /*************** CSS of Uv Index*******************/
@@ -63,7 +68,7 @@ ul{
 
     background-color: green;
     color: white;
-    width: 12%;
+    width: 35%;
 
 
 }
@@ -73,7 +78,7 @@ ul{
 
     background-color: yellow;
     color: purple;
-    width: 12%;
+    width: 35%;
 
 }
 
@@ -82,6 +87,6 @@ ul{
 
     background-color: red;
     color: white;
-    width: 12%;
+    width: 35%;
 
 }

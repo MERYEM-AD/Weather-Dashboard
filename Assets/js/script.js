@@ -6,6 +6,7 @@ const DisplaySearchHistory= document.querySelector('#DisplaySearchHistory');
 
 
 
+
 function getFromloalStorage(){
 
 
@@ -16,7 +17,8 @@ function getFromloalStorage(){
       }else{
 
         let searchTitle = document.createElement("h6"); 
-        searchTitle.textContent ="*** SERCH HISTORY ***"
+        searchTitle.setAttribute("class","row w-100");
+        searchTitle.textContent = "Search History "
         DisplaySearchHistory.append(searchTitle);
 
         citiesNames = JSON.parse(citiesNames);
@@ -49,9 +51,9 @@ function handleSearchFormSubmit(event) {
   const searchInputVal = document.querySelector('#search-input').value.trim().toUpperCase();
 
   let weatherlRequest = 'https://api.openweathermap.org/data/2.5/weather?q=' +searchInputVal+ '&appid=' +apiKey;
+  
 
   if (!searchInputVal) {
-    console.error('You need a search input value!');
     return;
   }
 
