@@ -14,62 +14,39 @@
 <link  rel="stylesheet" href="../Assets/css/style.css"  />
 </head>
 <body>
-              <h1>Weather Dashboard</h1>
-               <hr>
-
-              <div class="wholeContainer row">
-<div class="container1 col-3">
   
+         <h1>Weather Dashboard</h1>
+              
+         <hr>
 
-    <div class="input-group input-group-lg">
-        
-
-          <form id="search-form" class="w-100 form">
-            <input id="search-input" type="text" placeholder=" Search for a city ">
-            <button class="btn btn-info bg-darkblue"><i class="fas fa-cloud-sun-rain "></i>
-            </button>
-        </form>
-
-
-
-
-      <div class="btn-group-vertical HistoryDiv" id = "DisplaySearchHistory">
-        <!-- <h6> SERCH HISTORY</h6> -->
-
-      
-      </div>
-
-  </div>
-  
-
-     
-</div>
+          <div class="wholeContainer row">
+            <div class="container1 col-3 w-100">
+               <div class="input-group input-group-lg">
+                  <form id="search-form" class="w-100 form d-flex">
+                    <input id="search-input" type="text" placeholder=" Search for a city ... ">
+                    <button class="btn btn-info bg-darkblue"><i class="fas fa-cloud-sun-rain "></i>
+                    </button>
+                  </form>
+                  <div class="btn-group-vertical HistoryDiv" id = "DisplaySearchHistory"> </div>
+                </div>
+            </div>
 
 
-<div class="container2  col-9">
-       
-      <div>
-        <h6 >WEATHER DAY:</h6>
-        <div id="CityWeatherDay">
+          <div class="container2  col-9">
 
-        </div>
+            <!-- Display The Weather Day  -->
+            <div>
+              <h6 >WEATHER DAY:</h6>
+                <div id="CityWeatherDay"></div>
+            </div>
 
-
-      </div>
-
-
-<div>
-    <h6>5- day forcast</h6>
-    <div id="FiveDaysforcast" class="d-flex">
-
-
-
-
-    </div>   
-    </div>
-
-</div>
-  </div> 
+            <!-- Display 5 days forcast -->
+            <div>
+              <h6>5- day forcast</h6>
+                <div id="FiveDaysforcast" class="d-flex"></div>   
+            </div>
+          </div>
+         </div> 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../Assets/js/script.js"></script>

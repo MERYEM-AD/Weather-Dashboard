@@ -54,3 +54,34 @@ ul{
     margin:  5px;
 }
 .margin{margin:10px;}
+
+
+/*************** CSS of Uv Index*******************/
+
+
+.favorable{ 
+
+    background-color: green;
+    color: white;
+    width: 12%;
+
+
+}
+
+
+.moderate{
+
+    background-color: yellow;
+    color: purple;
+    width: 12%;
+
+}
+
+
+.severe{
+
+    background-color: red;
+    color: white;
+    width: 12%;
+
+}

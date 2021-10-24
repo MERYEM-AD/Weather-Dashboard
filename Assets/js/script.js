@@ -46,7 +46,7 @@ let tableHistory = getFromloalStorage();
 function handleSearchFormSubmit(event) {
   event.preventDefault();
   let searchInput= document.querySelector('#search-input');
-  const searchInputVal = document.querySelector('#search-input').value;
+  const searchInputVal = document.querySelector('#search-input').value.trim().toUpperCase();
 
   let weatherlRequest = 'https://api.openweathermap.org/data/2.5/weather?q=' +searchInputVal+ '&appid=' +apiKey;
 
@@ -105,7 +105,7 @@ function DisplayWeatherDay(urlRequest){
  .then( function(data){
 
     let cityname = document.createElement('ul');
-    cityname.textContent=data.name;
+    cityname.textContent=data.name.toUpperCase();
 
     CityWeatherDay.append(cityname);
 
@@ -155,6 +155,21 @@ function DisplayWeatherDay(urlRequest){
    })
    .then( function(data){
         uvIndex.textContent="UV index :"+data.value;
+
+        ///treat Conditions
+
+        console.log("uv index : "+parseInt(data.value));
+
+if (parseInt(data.value) >=1 && parseInt(data.value) <=2){
+
+  uvIndex.setAttribute("class","favorable");
+
+}else if (parseInt(data.value) >=3 && parseInt(data.value)<=5){
+
+  uvIndex.setAttribute("class","moderate");
+  
+}else{uvIndex.setAttribute("class","severe");}
+
    })
 
 
