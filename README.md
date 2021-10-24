@@ -17,7 +17,7 @@ Creation of a repository in GitHub:
 
 # Extra developing code :
 
-* If the Traveler entred an unfouned city he will redirect to a 404 page ;
+* If the Traveler entered an unfounded city he will redirect to a 404 page ;
 
 # GitBash & GitHub:
 
