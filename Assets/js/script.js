@@ -57,7 +57,6 @@ function handleSearchFormSubmit(event) {
     return;
   }
 
-
   CityWeatherDay.textContent="";
   forcast5.textContent=""
 
@@ -98,13 +97,18 @@ function DisplayWeatherDay(urlRequest){
  fetch(urlRequest)
  .then(function(response){
 
-  if(response.status===200){
+  if(response.status===404){
 
-    return response.json();
+   // return response.json();
+   console.log("404 Error !!");
+   return ;
   }
+  else  return response.json();
+
 
  })
  .then( function(data){
+   
 
     let cityname = document.createElement('ul');
     cityname.textContent=data.name.toUpperCase();

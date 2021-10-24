@@ -26,15 +26,12 @@ Creation of a repository in GitHub:
 * The Weather Dashboard interface :
 ![](Screenshots/.png)
 
-* Adding Cities :
-![](Screenshots/.png)
-![](Screenshots/.png)
-![](Screenshots/.png)
+* Add City :
+![add_city](Screenshots/add_city.png)
+![city_added](Screenshots/city_added.png)
 
-
-
-* Delete all cities :
-![](Screenshots/.png)
+* Display weather from search History:
+![searched_city](Screenshots/searched_city.png)
 
 # Links :
 
