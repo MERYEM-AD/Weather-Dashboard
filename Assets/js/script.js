@@ -3,8 +3,7 @@ const searchFormEl = document.querySelector('#search-form');
 const CityWeatherDay = document.querySelector('#CityWeatherDay');
 const forcast5= document.querySelector('#FiveDaysforcast');
 const DisplaySearchHistory= document.querySelector('#DisplaySearchHistory');
-
-
+const UnfoundCity = './404.html';
 
 
 function getFromloalStorage(){
@@ -28,7 +27,7 @@ function getFromloalStorage(){
 
             let buttonCityName =document.createElement('button');
             buttonCityName.setAttribute("class","bg-darkblue margin-Top w-100");
-            buttonCityName.setAttribute("data-city",citiesNames[i].name);
+            buttonCityName.setAttribute("data-city",(citiesNames[i].name).trim().toUpperCase());
             buttonCityName.textContent=citiesNames[i].name;
             $('.btn-group-vertical').append(buttonCityName);
             buttonCityName.addEventListener('click',BtnHistorySearch);
@@ -60,11 +59,24 @@ function handleSearchFormSubmit(event) {
   CityWeatherDay.textContent="";
   forcast5.textContent=""
 
-   DisplayWeatherDay(weatherlRequest);
-   FiveDaysforcast(searchInputVal);
 
+  fetch(weatherlRequest).then(function(response){
+
+    console.log(response);
+
+      if(response.status===404){
+
+        console.log ("Sorry ,City invalid ");
+        document.location.href=UnfoundCity;
+        
+      }else{
+
+        DisplayWeatherDay(weatherlRequest);
+  
+        FiveDaysforcast(searchInputVal);
 
      //create object name
+
   let CityObject={name :searchInputVal};
 
 
@@ -72,11 +84,18 @@ function handleSearchFormSubmit(event) {
   
    DisplaySearchHistory.textContent="";
 
- getFromloalStorage();
+   getFromloalStorage();
+      
 
+      }
+  })
 
-  searchInput.value=null;
+   
+
+searchInput.value=null;
+
 }
+
 
 function SetCtiyName(tableHistory,objectName){
 
@@ -92,23 +111,11 @@ function SetCtiyName(tableHistory,objectName){
 
 function DisplayWeatherDay(urlRequest){
 
-
-  
- fetch(urlRequest)
+  fetch(urlRequest)
  .then(function(response){
-
-  if(response.status===404){
-
-   // return response.json();
-   console.log("404 Error !!");
-   return ;
-  }
-  else  return response.json();
-
-
+    return response.json();
  })
  .then( function(data){
-   
 
     let cityname = document.createElement('ul');
     cityname.textContent=data.name.toUpperCase();
@@ -162,9 +169,7 @@ function DisplayWeatherDay(urlRequest){
    .then( function(data){
         uvIndex.textContent="UV index :"+data.value;
 
-        ///treat Conditions
-
-        console.log("uv index : "+parseInt(data.value));
+        ///comparison of  Conditions
 
 if (parseInt(data.value) >=1 && parseInt(data.value) <=2){
 
@@ -179,7 +184,11 @@ if (parseInt(data.value) >=1 && parseInt(data.value) <=2){
    })
 
 
- })
+
+ 
+ 
+ 
+});
 
 }
 
@@ -194,8 +203,6 @@ url :forcastDays,
 method:'GET',
 
 }).then(function(response){
- // console.log(response);
-
 
  for(let i=0;i<=32;i+=8){
  //let date =document.createElement('p');
@@ -244,8 +251,11 @@ cardBody.setAttribute("class","card-body");
 
  }
 
-  
-});
+}
+
+
+
+);
 
 
   

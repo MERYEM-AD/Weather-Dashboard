@@ -15,6 +15,10 @@ Creation of a repository in GitHub:
  * the Weather interface presented also with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity;
  * If the Traveler clicks on a searched city in the search history then he will be presented with current and future conditions for that city.
 
+# Extra developing code :
+
+* If the Traveler entred an unfouned city he will redirect to a 404 page ;
+
 # GitBash & GitHub:
 
 * Commit with msg every modification in code.
@@ -24,7 +28,7 @@ Creation of a repository in GitHub:
 # Application's Screenshots :
 
 * The Weather Dashboard interface :
-![](Screenshots/.png)
+![D_B_Interface](Screenshots/D_B_Interface.png)
 
 * Add City :
 ![add_city](Screenshots/add_city.png)
@@ -32,6 +36,11 @@ Creation of a repository in GitHub:
 
 * Display weather from search History:
 ![searched_city](Screenshots/searched_city.png)
+
+* Invalid city page :
+![invalid_city](Screenshots/invalid_city.png)
+![page_404](Screenshots/page_404.png)
+
 
 # Links :
 
